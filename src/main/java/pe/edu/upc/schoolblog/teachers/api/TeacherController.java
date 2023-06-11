@@ -68,9 +68,9 @@ public class TeacherController {
 
             //the same que create
 
-            TeacherResource studentResource = (mapper.toResource(teacherService.update(mapper.toModel(resource))));//convert resource to model
+            TeacherResource teacherResource = (mapper.toResource(teacherService.update(mapper.toModel(resource))));//convert resource to model
 
-            return new ResponseEntity<>(studentResource, HttpStatus.OK);
+            return new ResponseEntity<>(teacherResource, HttpStatus.OK);
 
         } else {
 
