@@ -7,7 +7,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import pe.edu.upc.schoolblog.courses.domain.entity.Course;
 import pe.edu.upc.schoolblog.marks.domain.entity.Mark;
+import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,5 +44,10 @@ public class Evaluation {
     @JsonIgnore
     @OneToOne(mappedBy = "evaluationId") // mapperBy es el object que permite la relación
     private Mark mark;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="course")
+    private Course course;
+
 
 }

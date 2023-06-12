@@ -8,8 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 import pe.edu.upc.schoolblog.student.domain.persistence.StudentRepository;
 import pe.edu.upc.schoolblog.student.domain.service.StudentService;
-
-
+import pe.edu.upc.schoolblog.student.resource.StudentResource;
 
 
 import java.util.List;

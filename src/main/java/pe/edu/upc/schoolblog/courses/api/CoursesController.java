@@ -45,4 +45,14 @@ public class CoursesController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        if (courseService.deleteById(id)) {
+            return ResponseEntity.ok().build(); // Devolver de forma directa - lambda
+            //return new ResponseEntity<>(HttpStatus.OK); // Devolución con instanciación
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
