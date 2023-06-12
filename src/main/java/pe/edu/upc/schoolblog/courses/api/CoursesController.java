@@ -39,10 +39,18 @@ public class CoursesController {
     public ResponseEntity<CourseResource> update(@PathVariable Integer id,
                                                  @RequestBody UpdateCourseResource resource) {
         if (id.equals(resource.getId())) {
-            CourseResource courseResource = (mapper.toResource(courseService.update(mapper.toModel(resource))));
+            CourseResource courseResource = mapper.toResource(courseService.update(mapper.toModel(resource)));
             return new ResponseEntity<>(courseResource, HttpStatus.OK);
         } else {
             return ResponseEntity.badRequest().build();
+        }
+    }
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        if(courseService.deleteById(id)) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 }

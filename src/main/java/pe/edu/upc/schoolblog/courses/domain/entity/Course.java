@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -25,9 +26,14 @@ public class Course {
     private String name;
 
     @NotNull
+    @Size(min = 2, max = 50)
+    @NotBlank
+    @Column(name = "knowledge", length = 2, nullable = false)
+    private String knowledge;
+
+    @NotNull
     @Size(min = 2, max = 200)
     @NotBlank
     @Column(name = "description", length = 2, nullable = false)
     private String description;
-
 }

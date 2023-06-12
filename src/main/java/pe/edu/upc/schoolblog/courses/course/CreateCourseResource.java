@@ -18,6 +18,11 @@ public class CreateCourseResource {
 
     @NotNull
     @NotBlank
+    @Size(min = 2, max = 50)
+    private String knowledge;
+
+    @NotNull
+    @NotBlank
     @Size(min = 50, max = 200)
     private String description;
 }
