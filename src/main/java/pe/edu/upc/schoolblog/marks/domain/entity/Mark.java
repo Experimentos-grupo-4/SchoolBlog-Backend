@@ -17,16 +17,16 @@ public class Mark {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="student_id")
     private Student studentId;
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="evaluation_id")
     private Evaluation evaluationId;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="teacher_id")
     private Teacher teacherId;
 

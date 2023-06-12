@@ -10,9 +10,9 @@ import lombok.*;
 public class MarkResource {
 
     private Integer id;
-    private String evaluationName;
-
-    private String teacherName;
+    private Integer evaluationId;
+    private Integer teacherId;
+    private Integer studentId;
 
     private Integer note;
 
