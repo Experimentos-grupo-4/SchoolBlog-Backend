@@ -10,7 +10,7 @@ public class MappingConfiguration {
 
     @Bean
 
-    public TeacherMapper studentMapper() {
+    public TeacherMapper teacherMapper() {
 
         return new TeacherMapper();
 
