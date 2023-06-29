@@ -4,8 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.schoolblog.courses.domain.entity.Course;
 
+import java.util.List;
 import java.util.Optional;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Integer>  {
     Optional<Course> findByName(String name);
+    List<Course> findByLevel(String level);
+    List<Course> findByLevelAndGrade(String level, String grade);
+    List<Course> findByLevelAndGradeAndSection(String level, String grade, String section);
 }

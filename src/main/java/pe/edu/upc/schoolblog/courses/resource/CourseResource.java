@@ -1,4 +1,4 @@
-package pe.edu.upc.schoolblog.courses.course;
+package pe.edu.upc.schoolblog.courses.resource;
 
 import lombok.*;
 

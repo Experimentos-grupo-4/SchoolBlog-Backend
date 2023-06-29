@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.schoolblog.courses.domain.entity.Course;
 import pe.edu.upc.schoolblog.courses.domain.service.CourseService;
 import pe.edu.upc.schoolblog.courses.mapping.CourseMapper;
-import pe.edu.upc.schoolblog.courses.course.CourseResource;
-import pe.edu.upc.schoolblog.courses.course.CreateCourseResource;
-import pe.edu.upc.schoolblog.courses.course.UpdateCourseResource;
+import pe.edu.upc.schoolblog.courses.resource.CourseResource;
+import pe.edu.upc.schoolblog.courses.resource.CreateCourseResource;
+import pe.edu.upc.schoolblog.courses.resource.UpdateCourseResource;
 
 import java.util.List;
 
@@ -21,8 +21,10 @@ public class CoursesController {
     private final CourseMapper mapper;
 
     @PostMapping
-    public CourseResource save(@RequestBody CreateCourseResource resource) {
-        return mapper.toResource(courseService.save(mapper.toModel(resource)));
+    public ResponseEntity<CourseResource> save(@RequestBody CreateCourseResource resource) {
+        return new ResponseEntity<>(
+                mapper.toResource(courseService.save(mapper.toModel(resource))),
+                HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -31,15 +33,18 @@ public class CoursesController {
     }
 
     @GetMapping("{id}")
-    public CourseResource fetchId(@PathVariable Integer id) {
-        return this.mapper.toResource(courseService.fetchById(id).get());
+    public ResponseEntity<CourseResource> fetchId(@PathVariable Integer id) {
+        return new ResponseEntity<>(
+                this.mapper.toResource(courseService.fetchById(id).get()),
+                HttpStatus.OK);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<CourseResource> update(@PathVariable Integer id,
                                                  @RequestBody UpdateCourseResource resource) {
         if (id.equals(resource.getId())) {
-            CourseResource courseResource = (mapper.toResource(courseService.update(mapper.toModel(resource))));
+            CourseResource courseResource = (mapper.toResource(
+                    courseService.update(mapper.toModel(resource))));
             return new ResponseEntity<>(courseResource, HttpStatus.OK);
         } else {
             return ResponseEntity.badRequest().build();

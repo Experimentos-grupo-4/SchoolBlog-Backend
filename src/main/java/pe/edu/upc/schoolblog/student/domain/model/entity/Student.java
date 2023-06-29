@@ -9,7 +9,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import pe.edu.upc.schoolblog.courses.domain.entity.Course;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
@@ -33,7 +35,7 @@ public class Student {
 
     @NotNull
     @Past
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name = "birthday")
     @Temporal(TemporalType.DATE)
     private Date birthday;
@@ -44,5 +46,12 @@ public class Student {
     @Column(name = "tiu", columnDefinition = "char(9)", nullable = false)
     private String tiu;
 
-
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "students_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private ArrayList<Course> courses;
 }

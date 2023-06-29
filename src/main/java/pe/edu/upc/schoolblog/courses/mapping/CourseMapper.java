@@ -2,9 +2,9 @@ package pe.edu.upc.schoolblog.courses.mapping;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import pe.edu.upc.schoolblog.courses.domain.entity.Course;
-import pe.edu.upc.schoolblog.courses.course.CourseResource;
-import pe.edu.upc.schoolblog.courses.course.CreateCourseResource;
-import pe.edu.upc.schoolblog.courses.course.UpdateCourseResource;
+import pe.edu.upc.schoolblog.courses.resource.CourseResource;
+import pe.edu.upc.schoolblog.courses.resource.CreateCourseResource;
+import pe.edu.upc.schoolblog.courses.resource.UpdateCourseResource;
 import pe.edu.upc.schoolblog.shared.mapping.EnhancedModelMapper;
 
 import java.io.Serializable;

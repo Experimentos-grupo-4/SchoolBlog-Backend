@@ -15,6 +15,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import pe.edu.upc.schoolblog.courses.domain.entity.Course;
+
+import java.util.List;
 
 @Entity
 
@@ -51,5 +54,8 @@ public class Teacher {
     @Column(name = "first_name", length = 30)
 
     private String firstName;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Course> courses;
 
 }

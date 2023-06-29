@@ -1,4 +1,4 @@
-package pe.edu.upc.schoolblog.courses.course;
+package pe.edu.upc.schoolblog.courses.resource;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
