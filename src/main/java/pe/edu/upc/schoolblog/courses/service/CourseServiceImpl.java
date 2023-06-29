@@ -11,6 +11,7 @@ import pe.edu.upc.schoolblog.courses.domain.service.CourseService;
 import pe.edu.upc.schoolblog.shared.Constant;
 import pe.edu.upc.schoolblog.shared.exception.ResourceNotFoundException;
 import pe.edu.upc.schoolblog.shared.exception.ResourceValidationException;
+import pe.edu.upc.schoolblog.teachers.domain.model.entity.Teacher;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,12 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> fetchAll() {
         return courseRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Course> fetchByTeacherId(Teacher teacher){
+        return courseRepository.findByTeacher(teacher);
     }
 
     @Transactional(readOnly = true)

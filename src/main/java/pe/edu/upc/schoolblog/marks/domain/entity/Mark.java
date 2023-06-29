@@ -19,18 +19,16 @@ public class Mark {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="student_id")
-    private Student studentId;
+    private Student student;
 
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="evaluation_id")
-    private Evaluation evaluationId;
+    @OneToOne
+    private Evaluation evaluation;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="teacher_id")
-    private Teacher teacherId;
+    private Teacher teacher;
 
     private Integer note;
 
-    
+
 }

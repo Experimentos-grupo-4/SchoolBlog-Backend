@@ -7,6 +7,7 @@ import pe.edu.upc.schoolblog.marks.domain.entity.Mark;
 import pe.edu.upc.schoolblog.marks.domain.persistence.MarkRepository;
 import pe.edu.upc.schoolblog.marks.domain.service.MarkService;
 import pe.edu.upc.schoolblog.marks.resource.MarkResource;
+import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +34,12 @@ public class MarkServiceImpl implements MarkService {
        if(markRepository.existsById(id))
         return markRepository.findById(id);
        else return Optional.empty();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Mark> fetchByStudent(Student student) {
+        return markRepository.findByStudent(student);
     }
 
     @Transactional

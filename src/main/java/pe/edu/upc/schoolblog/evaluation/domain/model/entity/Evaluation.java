@@ -41,13 +41,8 @@ public class Evaluation {
     @Temporal(TemporalType.DATE)
     private Date initDay;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "evaluationId") // mapperBy es el object que permite la relación
-    private Mark mark;
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="course")
+    @JoinColumn(name="course_id", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (course_id) references courses (id)"))
     private Course course;
-
 
 }

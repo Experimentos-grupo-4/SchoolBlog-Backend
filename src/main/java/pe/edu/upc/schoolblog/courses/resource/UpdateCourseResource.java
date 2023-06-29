@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCourseResource {
-    @NonNull
+    @NotNull
     @NotBlank
     @Min(1)
     private Integer id;
@@ -26,4 +26,19 @@ public class UpdateCourseResource {
     @NotBlank
     @Size(min = 50, max = 200)
     private String description;
+
+    @NotNull
+    @NotBlank
+    private String level;
+
+    @NotNull
+    @NotBlank
+    private String grade;
+
+    @NotNull
+    @NotBlank
+    private String section;
+
+    @NotNull
+    private Integer teacher_id;
 }

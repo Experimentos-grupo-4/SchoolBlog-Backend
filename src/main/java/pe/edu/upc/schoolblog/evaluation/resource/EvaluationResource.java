@@ -1,5 +1,6 @@
 package pe.edu.upc.schoolblog.evaluation.resource;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
 
 import java.util.Date;
@@ -15,6 +16,6 @@ public class EvaluationResource {  // Output - Response
     private String name;
     private String description;
     private Date expirationDay;
-
     private Date initDay;
+    private Integer course_id;
 }

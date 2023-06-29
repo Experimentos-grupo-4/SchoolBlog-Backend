@@ -42,16 +42,35 @@ public class Student {
 
     @NotNull
     @NotBlank
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @NotNull
+    @NotBlank
+    @Column(name="phone", nullable = false)
+    private String phone;
+
+    @NotNull
+    @Column(name = "age", nullable = false)
+    private Integer age;
+
+    @NotNull
+    @NotBlank
     @Size(min = 9, max = 9)
     @Column(name = "tiu", columnDefinition = "char(9)", nullable = false)
     private String tiu;
 
+    @NotNull
+    @NotBlank
+    @Column(name = "address", nullable = false)
+    private String Address;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "students_courses",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
+            name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (student_id) references students (id)")),
+            inverseJoinColumns = @JoinColumn(name = "course_id", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (course_id) references courses (id)"))
     )
     private ArrayList<Course> courses;
 }

@@ -2,6 +2,7 @@ package pe.edu.upc.schoolblog.evaluation.resource;
 
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -38,5 +39,8 @@ public class CreateEvaluationResource {    // Input - Request
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date initDay;
+
+    @NotNull
+    private Integer course_id;
 
 }

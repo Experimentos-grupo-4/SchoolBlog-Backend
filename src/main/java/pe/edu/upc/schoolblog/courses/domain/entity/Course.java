@@ -7,10 +7,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import pe.edu.upc.schoolblog.evaluation.domain.model.entity.Evaluation;
 import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 import pe.edu.upc.schoolblog.teachers.domain.model.entity.Teacher;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -45,15 +47,19 @@ public class Course {
 
     @NotNull
     @NotBlank
-    @Column
+    @Column(name = "section", nullable = false)
     private String section;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "courses")
     private ArrayList<Student> students;
 
+    @NotNull
     @ManyToOne
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
+    @OneToMany(mappedBy = "course")
+    private List<Evaluation> evaluations;
 
 }

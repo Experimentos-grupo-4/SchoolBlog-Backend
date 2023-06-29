@@ -1,5 +1,10 @@
 package pe.edu.upc.schoolblog.marks.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +15,20 @@ import pe.edu.upc.schoolblog.marks.mapping.MarkMapper;
 import pe.edu.upc.schoolblog.marks.resource.CreateMarkResource;
 import pe.edu.upc.schoolblog.marks.resource.MarkResource;
 import pe.edu.upc.schoolblog.marks.resource.UpdateMarkResource;
+import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
+import pe.edu.upc.schoolblog.student.domain.service.StudentService;
 
 import java.util.List;
+import java.util.Optional;
 
+@Tag(name = "Marks", description = "Create, Read, Update and Delete MARKS entities")
 @RestController
 @RequestMapping("marks")
 @AllArgsConstructor
 public class MarkController {
 
     private final MarkService markService;
+    private final StudentService studentService;
     private final MarkMapper mapper;
 
     @GetMapping
@@ -26,11 +36,30 @@ public class MarkController {
         return markService.fetchAll();
     }
 
+
+    @Operation(summary = "Find by MarkId", responses = {
+            @ApiResponse(description = "Mark successfully found",
+            responseCode = "200",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(implementation = MarkResource.class)))
+    })
     @GetMapping("{id}")
     public MarkResource fetchId(@PathVariable Integer id) {
         return this.mapper.toResource(markService.fetchById(id).get());
     }
 
+    @GetMapping("{student_id}")
+    public List<Mark> fetchCourseId(@PathVariable Integer student_id){
+        Optional<Student> student = studentService.fetchById(student_id);
+        return markService.fetchByStudent(student.get());
+    }
+
+    @Operation(summary = "Save a mark", responses = {
+            @ApiResponse(description = "Mark successfully created",
+            responseCode = "201",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(implementation = MarkResource.class)))
+    })
     @PostMapping
     public MarkResource save(@RequestBody CreateMarkResource resource) {
         return mapper.toResource(markService.save(mapper.toModel(resource)));

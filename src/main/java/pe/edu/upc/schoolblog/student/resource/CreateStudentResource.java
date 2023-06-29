@@ -1,6 +1,9 @@
 package pe.edu.upc.schoolblog.student.resource;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -28,14 +31,33 @@ public class CreateStudentResource {    // Input - Request
     @Size(min = 2, max = 30)
     private String firstName;
 
+
     @NotNull
     @Past
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @Column(name = "birthday")
+    @Temporal(TemporalType.DATE)
     private Date birthday;
+
+    @NotNull
+    @NotBlank
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @NotNull
+    @NotBlank
+    private String phone;
+
+    @NotNull
+    private Integer age;
 
     @NotNull
     @NotBlank
     @Size(min = 9, max = 9)
     private String tiu;
+
+    @NotNull
+    @NotBlank
+    private String Address;
 
 }

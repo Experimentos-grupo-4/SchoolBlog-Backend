@@ -9,9 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateMarkResource {
-    @NotNull
-    @NotBlank
-    private Integer evaluationId;
+
     @NotNull
     @NotBlank
     private Integer teacherId;

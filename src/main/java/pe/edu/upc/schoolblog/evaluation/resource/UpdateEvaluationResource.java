@@ -33,4 +33,7 @@ public class UpdateEvaluationResource {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date initDay;
+
+    @NotNull
+    private Integer course_id;
 }
