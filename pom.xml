@@ -93,6 +93,7 @@
 			<version>3.1.1</version>
 		</dependency>
 
+
 	<!--security-->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
 		<dependency>
@@ -149,25 +150,18 @@
 			<version>5.2.0</version>
 			<scope>test</scope>
 		</dependency>
-
-
+=======
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.7.0</version>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.1.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-webmvc-core -->
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-webmvc-core</artifactId>
-			<version>1.7.0</version>
-		</dependency>
+			<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+			<version>2.1.0</version>
 
-		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-data-rest -->
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-data-rest</artifactId>
-			<version>1.7.0</version>
 		</dependency>
 
 	</dependencies>

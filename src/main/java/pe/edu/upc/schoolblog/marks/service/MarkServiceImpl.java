@@ -6,12 +6,15 @@ import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pe.edu.upc.schoolblog.evaluation.domain.model.entity.Evaluation;
 import pe.edu.upc.schoolblog.marks.domain.entity.Mark;
 import pe.edu.upc.schoolblog.marks.domain.persistence.MarkRepository;
 import pe.edu.upc.schoolblog.marks.domain.service.MarkService;
 import pe.edu.upc.schoolblog.marks.resource.MarkResource;
+
 import pe.edu.upc.schoolblog.shared.Constant;
 import pe.edu.upc.schoolblog.shared.exception.ResourceValidationException;
+
 import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 
 import java.util.List;
@@ -40,6 +43,18 @@ public class MarkServiceImpl implements MarkService {
        if(markRepository.existsById(id))
         return markRepository.findById(id);
        else return Optional.empty();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Mark> fetchByStudent(Student student) {
+        return markRepository.findByStudent(student);
+    }
+
+    @Transactional
+    @Override
+    public List<Mark> fetchByEvaluation(Evaluation evaluation) {
+        return markRepository.findByEvaluation(evaluation);
     }
 
     @Transactional

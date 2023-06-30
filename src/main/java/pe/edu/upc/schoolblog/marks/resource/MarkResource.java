@@ -1,6 +1,7 @@
 package pe.edu.upc.schoolblog.marks.resource;
 
 import lombok.*;
+import pe.edu.upc.schoolblog.evaluation.domain.model.entity.Evaluation;
 
 @Getter
 @Setter
@@ -10,10 +11,7 @@ import lombok.*;
 public class MarkResource {
 
     private Integer id;
-    private Integer evaluationId;
-    private Integer teacherId;
-    private Integer studentId;
-
+    private Evaluation evaluation;
     private Integer note;
 
 }

@@ -11,9 +11,6 @@ import java.util.stream.Collectors;
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class ResourceValidationException extends RuntimeException {
 
-    public ResourceValidationException() {
-    }
-
     public ResourceValidationException(String message) {
         super(message);
     }
@@ -32,4 +29,13 @@ public class ResourceValidationException extends RuntimeException {
     public ResourceValidationException(String resourceName, String message) {
         super(String.format("Not all constraints satisfied for %s: %s", resourceName, message));
     }
+
+    public <T> ResourceValidationException(Set<ConstraintViolation<T>> violations) {
+        super(violations.stream()
+                .map(violation -> String.format("%s : %s", violation.getPropertyPath(), violation.getMessage()))
+                .collect(Collectors.joining(", ")));
+        StackTraceElement[] mio = {};
+        this.setStackTrace(mio);
+    }
+
 }
