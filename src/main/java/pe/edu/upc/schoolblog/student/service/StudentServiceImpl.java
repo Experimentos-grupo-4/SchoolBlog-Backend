@@ -5,6 +5,9 @@ import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pe.edu.upc.schoolblog.shared.Constant;
+import pe.edu.upc.schoolblog.shared.exception.ResourceNotFoundException;
+import pe.edu.upc.schoolblog.shared.exception.ResourceValidationException;
 import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 import pe.edu.upc.schoolblog.student.domain.persistence.StudentRepository;
 import pe.edu.upc.schoolblog.student.domain.service.StudentService;
@@ -34,14 +37,18 @@ public class StudentServiceImpl implements StudentService {
     public Optional<Student> fetchById(Integer id) {
         if(studentRepository.existsById(id))
             return studentRepository.findById(id);
-        else return Optional.empty();
+        else throw new ResourceNotFoundException(Constant.STUDENT_ENTITY, id);
     }
 
 
     @Transactional
     @Override
     public Student save(Student student) {
-
+        Set<ConstraintViolation<Student>> violations
+                = validator.validate(student);
+        if (!violations.isEmpty()){
+            throw new ResourceValidationException(violations);
+        }
         return studentRepository.save(student);
     }
 

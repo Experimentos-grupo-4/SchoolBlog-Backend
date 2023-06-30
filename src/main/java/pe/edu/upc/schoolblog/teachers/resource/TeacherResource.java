@@ -20,6 +20,12 @@ public class TeacherResource {
 
     private String firstName;
 
+    private String phone;
+
+    private String email;
+
+    private String address;
+
     
 
 }

@@ -2,6 +2,7 @@ package pe.edu.upc.schoolblog.marks.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import pe.edu.upc.schoolblog.evaluation.domain.model.entity.Evaluation;
@@ -17,20 +18,17 @@ public class Mark {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="student_id")
-    private Student studentId;
+    private Student student;
 
+    @ManyToOne
+    @JoinColumn(name = "evaluation_id")
+    private Evaluation evaluation;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="evaluation_id")
-    private Evaluation evaluationId;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="teacher_id")
-    private Teacher teacherId;
-
+    @NotNull
     private Integer note;
 
-    
+
 }
