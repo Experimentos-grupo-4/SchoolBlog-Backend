@@ -4,13 +4,13 @@ import org.springframework.context.annotation.Bean;
 
 import org.springframework.context.annotation.Configuration;
 
-@Configuration("learningMappingConfiguration")
+@Configuration("teachersMappingConfiguration")
 
 public class MappingConfiguration {
 
     @Bean
 
-    public TeacherMapper studentMapper() {
+    public TeacherMapper teacherMapper() {
 
         return new TeacherMapper();
 

@@ -34,3 +34,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+documentation:
+  application:
+    description: @project.description@
+    version: @project.version@
+
+springdoc:
+  # /v3/api-docs endpoint  custom path:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui/index.html

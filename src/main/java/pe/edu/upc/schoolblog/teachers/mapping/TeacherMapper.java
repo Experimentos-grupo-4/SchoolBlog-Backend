@@ -15,7 +15,7 @@ import pe.edu.upc.schoolblog.teachers.resource.UpdateTeacherResource;
 import java.io.Serializable;
 
 public class TeacherMapper implements Serializable {
-
+    @Autowired
    EnhancedModelMapper mapper;
 
     public Teacher toModel(CreateTeacherResource resource) {
