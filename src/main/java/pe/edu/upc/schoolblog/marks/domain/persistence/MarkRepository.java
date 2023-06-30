@@ -14,4 +14,6 @@ public interface MarkRepository extends JpaRepository<Mark, Integer> {
     List<Mark> findByEvaluation(Evaluation evaluation);
 
 
+    Optional<Mark> findById(Integer id);
+
 }

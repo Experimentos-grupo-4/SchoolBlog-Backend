@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.persistence.criteria.CriteriaBuilder;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +26,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("students")
 @AllArgsConstructor
+@Tag(name = "Students", description = "Create, Read, Update ande delete student entities")
 public class StudentController {
     private final StudentService studentService;
     private final CourseService courseService;
@@ -39,8 +40,11 @@ public class StudentController {
                             schema = @Schema(implementation = StudentResource.class)))
     })
     @PostMapping
-    public StudentResource save(@RequestBody CreateStudentResource resource) {
-        return mapper.toResource( studentService.save( mapper.toModel(resource) ) );
+    public ResponseEntity<StudentResource> save(@RequestBody CreateStudentResource resource) {
+            return new ResponseEntity<>(
+                    mapper.toResource( studentService.save( mapper.toModel(resource) ) ),
+                    HttpStatus.CREATED
+            );
     }
 
     @GetMapping
@@ -56,8 +60,10 @@ public class StudentController {
                             schema = @Schema(implementation = StudentResource.class)))
     })
     @GetMapping("{id}")
-    public StudentResource fetchId(@PathVariable Integer id) {
-        return this.mapper.toResource(studentService.fetchById(id).get());
+    public ResponseEntity<StudentResource> fetchId(@PathVariable Integer id) {
+        return new ResponseEntity<>(
+                this.mapper.toResource(studentService.fetchById(id).get()),
+                HttpStatus.OK );
     }
 
     @PutMapping("{id}")
