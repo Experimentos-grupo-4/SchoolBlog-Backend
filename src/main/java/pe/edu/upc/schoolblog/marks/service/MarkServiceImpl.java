@@ -1,5 +1,8 @@
 package pe.edu.upc.schoolblog.marks.service;
 
+import jakarta.persistence.Entity;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,10 +11,15 @@ import pe.edu.upc.schoolblog.marks.domain.entity.Mark;
 import pe.edu.upc.schoolblog.marks.domain.persistence.MarkRepository;
 import pe.edu.upc.schoolblog.marks.domain.service.MarkService;
 import pe.edu.upc.schoolblog.marks.resource.MarkResource;
+
+import pe.edu.upc.schoolblog.shared.Constant;
+import pe.edu.upc.schoolblog.shared.exception.ResourceValidationException;
+
 import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class MarkServiceImpl implements MarkService {
@@ -19,7 +27,7 @@ public class MarkServiceImpl implements MarkService {
     @Autowired
     private MarkRepository markRepository;
 
-
+    private Validator validator;
 
 
     @Transactional(readOnly = true)
@@ -57,6 +65,7 @@ public class MarkServiceImpl implements MarkService {
     @Transactional
     @Override
     public Mark update(Mark mark) {
+
         return markRepository.save(mark);
     }
 
