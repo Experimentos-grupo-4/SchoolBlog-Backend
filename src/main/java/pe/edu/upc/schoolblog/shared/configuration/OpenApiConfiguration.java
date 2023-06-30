@@ -19,8 +19,6 @@ public class OpenApiConfiguration {
                 .title("Schedule API")
                 .version(applicationVersion)
                 .description(applicationDescription)
-                .termsOfService("https://www.upc.edu.pe/tos")
-                .license(new License().name("Apache 2.0 License").url("https://www.upc.edu.pe/license"))
                 .contact(new Contact()
                         .url("https://www.upc.edu.pe")
                         .name("UPC-si729"))
