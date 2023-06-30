@@ -14,6 +14,8 @@ public interface CourseRepository extends JpaRepository<Course, Integer>  {
     List<Course> findByLevelAndGrade(String level, String grade);
     List<Course> findByLevelAndGradeAndSection(String level, String grade, String section);
 
+    Optional<Course> findByNameAndLevelAndAndGradeAndAndSection(String name, String level, String grade, String section);
+
     List<Course> findByTeacher(Teacher teacher);
 
 }

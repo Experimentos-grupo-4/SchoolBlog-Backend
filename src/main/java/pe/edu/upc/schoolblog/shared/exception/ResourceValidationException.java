@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class ResourceValidationException extends RuntimeException {
 
+    public ResourceValidationException(String message) {
+        super(message);
+    }
+
     public <T> ResourceValidationException(Set<ConstraintViolation<T>> violations) {
         super(violations.stream()
                 .map(violation -> String.format("%s : %s", violation.getPropertyPath(), violation.getMessage()))

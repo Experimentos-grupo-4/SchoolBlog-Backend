@@ -18,7 +18,6 @@ public class UpdateEvaluationResource {
     private Integer id;
     @NotNull
     @NotBlank
-    @Column(name = "name")
     private String name;
     @NotNull
     @NotBlank

@@ -41,8 +41,9 @@ public class Evaluation {
     @Temporal(TemporalType.DATE)
     private Date initDay;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="course_id", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (course_id) references courses (id)"))
+    @JoinColumn(name="course_id", nullable = false, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (course_id) references courses (id)"))
     private Course course;
 
 }

@@ -15,9 +15,6 @@ public class MarkMapper implements Serializable {
     @Autowired
     EnhancedModelMapper mapper;
 
-
-
-
     public Mark toModel (CreateMarkResource resource){
         return this.mapper.map(resource,Mark.class);
 

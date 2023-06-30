@@ -15,8 +15,5 @@ public class CourseResource {
     private String level;
     private String grade;
     private String section;
-    private Integer teacherId;
-
-
 
 }

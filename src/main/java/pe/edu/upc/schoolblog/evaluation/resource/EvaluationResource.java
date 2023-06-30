@@ -17,5 +17,4 @@ public class EvaluationResource {  // Output - Response
     private String description;
     private Date expirationDay;
     private Date initDay;
-    private Integer course_id;
 }

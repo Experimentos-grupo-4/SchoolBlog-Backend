@@ -18,7 +18,10 @@ import pe.edu.upc.schoolblog.evaluation.mapping.EvaluationMapper;
 import pe.edu.upc.schoolblog.evaluation.resource.CreateEvaluationResource;
 import pe.edu.upc.schoolblog.evaluation.resource.EvaluationResource;
 import pe.edu.upc.schoolblog.evaluation.resource.UpdateEvaluationResource;
+import pe.edu.upc.schoolblog.shared.Constant;
+import pe.edu.upc.schoolblog.shared.exception.ResourceNotFoundException;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +44,18 @@ public class EvaluationController {
 
     @PostMapping
     public EvaluationResource save(@RequestBody CreateEvaluationResource resource) {
-        return mapper.toResource( evaluationService.save( mapper.toModel(resource)) ) ;
+
+        Evaluation newEvaluation = mapper.toModel(resource);
+
+        Optional<Course> course = courseService.fetchById(resource.getCourse_id());
+
+        if (course.isEmpty()){
+            throw new ResourceNotFoundException(Constant.COURSE_ENTITY, resource.getCourse_id());
+        }
+
+        newEvaluation.setCourse(course.get());
+
+        return mapper.toResource( evaluationService.save( newEvaluation) ) ;
     }
 
     @GetMapping
@@ -61,9 +75,13 @@ public class EvaluationController {
         return this.mapper.toResource(evaluationService.fetchById(id).get());
     }
 
-    @GetMapping("{course_id}")
+    @GetMapping("/courses/{course_id}")
     public List<Evaluation> fetchByCourseId(@PathVariable Integer course_id){
         Optional<Course> course = courseService.fetchById(course_id);
+        if (course.isEmpty()){
+            throw new ResourceNotFoundException(Constant.COURSE_ENTITY, course_id);
+        }
+
         return evaluationService.fetchByCourse(course.get());
     }
 
@@ -71,8 +89,14 @@ public class EvaluationController {
     public ResponseEntity<EvaluationResource> update(@PathVariable Integer id,
                                                      @RequestBody UpdateEvaluationResource resource) {
         if (id.equals(resource.getId())) {
+
+            Evaluation evaluation = mapper.toModel(resource);
+
+            Optional<Course> course = courseService.fetchById(resource.getCourse_id());
+            evaluation.setCourse(course.get());
+
             EvaluationResource EvaluationResource = mapper.toResource(
-                    evaluationService.update( mapper.toModel(resource) ) );
+                    evaluationService.update( evaluation) );
             return new ResponseEntity<>(EvaluationResource, HttpStatus.OK);
         } else {
             return ResponseEntity.badRequest().build();

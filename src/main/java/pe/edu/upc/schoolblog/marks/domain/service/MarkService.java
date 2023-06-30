@@ -1,5 +1,6 @@
 package pe.edu.upc.schoolblog.marks.domain.service;
 
+import pe.edu.upc.schoolblog.evaluation.domain.model.entity.Evaluation;
 import pe.edu.upc.schoolblog.marks.domain.entity.Mark;
 import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 
@@ -12,6 +13,8 @@ public interface MarkService {
     Optional<Mark> fetchById (Integer id);
 
     List<Mark> fetchByStudent(Student student);
+
+    List<Mark> fetchByEvaluation(Evaluation evaluation);
 
     Mark save (Mark mark);
 

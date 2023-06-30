@@ -21,12 +21,11 @@ public class UpdateMarkResource {
     @NotNull
     @NotBlank
     private  Integer evaluationId;
-    @NotNull
-    @NotBlank
-    private  Integer teacherId;
+
     @NotNull
     @NotBlank
     private  Integer studentId;
+
     @NotNull
     @NotBlank
     @Min(0)

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.schoolblog.courses.domain.entity.Course;
+import pe.edu.upc.schoolblog.courses.domain.entity.Level;
 import pe.edu.upc.schoolblog.courses.domain.persistence.CourseRepository;
 import pe.edu.upc.schoolblog.courses.domain.service.CourseService;
 import pe.edu.upc.schoolblog.shared.Constant;
@@ -49,6 +50,24 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course save(Course course) {
+
+        if (course.getLevel()!= Level.PRESCHOOL_LEVEL){
+            if (course.getLevel()!= Level.ELEMENTARY_SCHOOL_LEVEL){
+                if (course.getLevel() != Level.HIGH_SCHOOL_LEVEL){
+                    throw new ResourceValidationException("Invalid level, only can be: (" +
+                            Level.PRESCHOOL_LEVEL + ") or (" +
+                            Level.ELEMENTARY_SCHOOL_LEVEL+ ") or ("
+                            + Level.HIGH_SCHOOL_LEVEL + ").");
+                }
+            }
+        }
+
+        Optional<Course> existingCourse = courseRepository.findByNameAndLevelAndAndGradeAndAndSection(course.getName(), course.getLevel(), course.getGrade(), course.getSection());
+
+        if (existingCourse != null){
+            throw new ResourceValidationException("This course already exist in this section.");
+        }
+
         Set<ConstraintViolation<Course>>
                 violations = validator.validate(course);
 

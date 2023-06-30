@@ -1,5 +1,6 @@
 package pe.edu.upc.schoolblog.principals.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import pe.edu.upc.schoolblog.principals.resource.UpdatePrincipalResource;
 
 import java.util.List;
 
+@Tag(name = "Principals")
 @RestController
 @RequestMapping("principals")
  @AllArgsConstructor

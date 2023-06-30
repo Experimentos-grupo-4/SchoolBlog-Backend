@@ -14,17 +14,16 @@ import lombok.*;
 public class UpdateCourseResource {
     @NotNull
     @NotBlank
-    @Min(1)
     private Integer id;
 
     @NotNull
     @NotBlank
-    @Size(min = 10, max = 50)
+    @Size(max = 50)
     private String name;
 
     @NotNull
     @NotBlank
-    @Size(min = 50, max = 200)
+    @Size(max = 200)
     private String description;
 
     @NotNull

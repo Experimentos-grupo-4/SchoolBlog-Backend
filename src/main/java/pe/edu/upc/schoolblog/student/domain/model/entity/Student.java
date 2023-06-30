@@ -13,6 +13,7 @@ import pe.edu.upc.schoolblog.courses.domain.entity.Course;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -72,5 +73,5 @@ public class Student {
             joinColumns = @JoinColumn(name = "student_id", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (student_id) references students (id)")),
             inverseJoinColumns = @JoinColumn(name = "course_id", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (course_id) references courses (id)"))
     )
-    private ArrayList<Course> courses;
+    private List<Course> courses;
 }

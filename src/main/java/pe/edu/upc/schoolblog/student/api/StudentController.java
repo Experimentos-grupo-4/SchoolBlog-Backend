@@ -20,6 +20,7 @@ import pe.edu.upc.schoolblog.student.resource.StudentResource;
 import pe.edu.upc.schoolblog.student.resource.UpdateStudentResource;
 
 import java.util.List;
+import java.util.Optional;
 
 @Tag(name = "Students", description = "Create, Read, Update and Delete students entities")
 @RestController
@@ -96,6 +97,13 @@ public class StudentController {
         studentService.save(student);
 
         return ResponseEntity.ok("Student added to course successfully");
+    }
+
+    @GetMapping("{student_id}/courses")
+    public List<Course> fetchCoursesByStudentId(@PathVariable Integer student_id){
+        Optional<Student> student = studentService.fetchById(student_id);
+        return student.get().getCourses();
+
     }
 
 }

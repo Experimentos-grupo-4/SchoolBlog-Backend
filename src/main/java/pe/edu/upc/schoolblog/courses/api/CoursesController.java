@@ -49,8 +49,13 @@ public class CoursesController {
             return ResponseEntity.badRequest().body(null);
         }
 
+       Course newCourse = mapper.toModel(resource);
+        newCourse.setTeacher(teacher.get());
+
+        teacher.get().getCourses().add(newCourse);
+
         return new ResponseEntity<>(
-                mapper.toResource(courseService.save(mapper.toModel(resource))),
+                mapper.toResource(courseService.save(newCourse)),
                 HttpStatus.CREATED);
     }
 
@@ -61,7 +66,7 @@ public class CoursesController {
 
 
     @Operation(summary = "Find by CourseId", responses = {
-            @ApiResponse(description = "Course successfullt found",
+            @ApiResponse(description = "Course successfully found",
             responseCode = "200",
             content = @Content(mediaType = "application/json",
             schema = @Schema(implementation = CourseResource.class)) )
@@ -73,7 +78,7 @@ public class CoursesController {
                 HttpStatus.OK);
     }
 
-    @GetMapping("{teacher_id}")
+    @GetMapping("/teacher/{teacher_id}")
     public List<Course> fetchByTeacherId(@PathVariable Integer teacher_id){
         Optional<Teacher> teacher = teacherService.fetchById(teacher_id);
 

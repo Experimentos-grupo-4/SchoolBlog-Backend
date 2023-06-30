@@ -52,13 +52,15 @@ public class Course {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "courses")
-    private ArrayList<Student> students;
+    private List<Student> students;
 
+    @JsonIgnore
     @NotNull
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     private List<Evaluation> evaluations;
 
