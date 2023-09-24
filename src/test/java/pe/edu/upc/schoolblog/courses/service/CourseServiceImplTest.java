@@ -38,6 +38,7 @@ public class CourseServiceImplTest {
         // Act
         List<Teacher> actual = teacherService.fetchAll();
 
+
         // Assert
         Assertions.assertEquals(expected.get(0).getId(), actual.get(0).getId());
         Assertions.assertEquals(expected.get(0).getLastName(), actual.get(0).getLastName());

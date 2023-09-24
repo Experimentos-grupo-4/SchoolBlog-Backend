@@ -5,7 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
+import pe.edu.upc.schoolblog.evaluation.domain.model.entity.Evaluation;
 import pe.edu.upc.schoolblog.marks.domain.entity.Mark;
+import pe.edu.upc.schoolblog.student.domain.model.entity.Student;
 
 import java.util.List;
 import java.util.Optional;
@@ -114,6 +116,16 @@ public class MarkRepositoryImpl implements MarkRepository {
 
     @Override
     public <S extends Mark> List<S> saveAll(Iterable<S> entities) {
+        return null;
+    }
+
+    @Override
+    public List<Mark> findByStudent(Student student) {
+        return null;
+    }
+
+    @Override
+    public List<Mark> findByEvaluation(Evaluation evaluation) {
         return null;
     }
 
