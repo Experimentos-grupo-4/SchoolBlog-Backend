@@ -88,6 +88,7 @@ class EvaluationServiceImplTest {
 
         when(evaluationRepository.findByCourse(course)).thenReturn(evaluations);
 
+
         List<Evaluation> result = evaluationService.fetchByCourse(course);
 
         assertEquals(2, result.size());
