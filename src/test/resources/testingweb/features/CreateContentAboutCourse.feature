@@ -1,26 +1,23 @@
-US010
-Título:
-Agregar contenido al curso
-Docente
-Como docente, quiero agregar contenido educativo al curso, como lecciones, módulos, archivos multimedia y evaluaciones, para enriquecer la experiencia de aprendizaje de los alumnos.
-Escenario 1: 
-Dado que soy un docente autenticado en la plataforma,
-Cuando deseo agregar contenido educativo a un curso que he creado,
-Y proporciono lecciones, módulos, archivos multimedia y evaluaciones válidos,
-Entonces el contenido se agrega exitosamente al curso,
-Y los alumnos pueden acceder a él para enriquecer su experiencia de aprendizaje.
+Feature: Crear un nuevo curso
+  Como docente, quiero poder crear un nuevo curso en la plataforma para compartir mi conocimiento con los alumnos, proporcionando un título, descripción, objetivos y duración del curso.
 
-Escenario 2: 
-Dado que soy un docente autenticado en la plataforma,
-Cuando intento agregar contenido al curso,
-Y hay un problema técnico o de formato con el contenido que estoy intentando agregar,
-Entonces se me muestra un mensaje de error indicando que la adición de contenido ha fallado,
-Y se me proporcionan instrucciones para solucionar el problema o corregir el formato.
+  Scenario: Crear curso exitosamente
+    Given que soy un docente autenticado en la plataforma
+    When deseo crear un nuevo curso
+    And proporciono un título, descripción, objetivos y duración válidos para el curso
+    Then el curso se crea con éxito en la plataforma
+    And recibo una confirmación de que el curso ha sido creado exitosamente
 
-Escenario 3: 
-Dado que soy un docente autenticado en la plataforma,
-Cuando deseo cancelar la adición de contenido al curso en cualquier punto del proceso,
-Y decido no agregar más contenido en ese momento,
-Entonces se cancela la acción de adición de contenido al curso,
-Y se mantiene el estado anterior del curso sin cambios en su contenido.
+  Scenario: Error al crear curso por campos incompletos o inválidos
+    Given que soy un docente autenticado en la plataforma
+    When intento crear un nuevo curso
+    And dejo campos obligatorios en blanco o proporciono información inválida en los campos requeridos
+    Then se me muestra un mensaje de error indicando que la creación del curso ha fallado
+    And se me solicita corregir los campos antes de poder continuar
 
+  Scenario: Cancelar creación de curso
+    Given que soy un docente autenticado en la plataforma
+    When deseo cancelar la creación del curso en cualquier punto del proceso
+    And decido no crear el curso en ese momento
+    Then se cancela la acción de creación del curso
+    And se me redirige de vuelta a la plataforma sin crear un nuevo curso
