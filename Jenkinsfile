@@ -4,6 +4,7 @@ pipeline {
         // Define la variable de entorno PATH para incluir la ubicación de Angular CLI.
         PATH = "/ruta/a/angular/cli:$PATH"
     }
+
     stages {
         stage('Checkout') {
             steps {
