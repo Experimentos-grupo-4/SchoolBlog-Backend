@@ -8,7 +8,7 @@ pipeline {
             }
         }
 
-        stage('Install') {
+        stage('Too Install') {
             steps {
                 script {
                     // Coloca aquí los comandos para instalar dependencias
@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('Compile') {
+        stage('Compile Stage') {
             steps {
                 script {
                     // Coloca aquí los comandos para compilar tu proyecto
@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Testing') {
+        stage('Testing Stage') {
             steps {
                 script {
                     // Coloca aquí los comandos para ejecutar pruebas
