@@ -13,8 +13,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Instala Node.js y las dependencias del proyecto (asegúrate de que Node.js y npm estén instalados)
-                bat 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
-                bat 'apt-get install -y nodejs'
+                bat 'curl -sL https://deb.nodesource.com/setup_14.x | cmd'
+                bat 'msiexec /i %WORKSPACE%\\setup_14.x /qn'
                 bat 'npm install'
             }
         }
