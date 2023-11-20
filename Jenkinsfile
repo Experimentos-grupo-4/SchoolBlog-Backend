@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Declarative: Checkout SCM') {
-            steps {
-                checkout scm
-            }
-        }
 
         stage('Declarative: Too Install') {
             steps {
