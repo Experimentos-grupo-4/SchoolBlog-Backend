@@ -2,33 +2,26 @@ pipeline {
     agent any
     environment {
         // Define la variable de entorno PATH para incluir la ubicación de Angular CLI.
-        PATH = "/ruta/a/angular/cli:$PATH"
+        PATH = "C:\\ruta\\a\\angular\\cli;$PATH"
     }
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    // Utiliza 'script' para ejecutar múltiples comandos en el mismo directorio de trabajo.
-                    checkout scm
-                }
+                checkout scm
             }
         }
         stage('Install Dependencies') {
             steps {
-                script {
-                    // Instala Node.js y las dependencias del proyecto (asegúrate de que Node.js y npm estén instalados)
-                    sh 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
-                    sh 'apt-get install -y nodejs'
-                    sh 'npm install'
-                }
+                // Instala Node.js y las dependencias del proyecto (asegúrate de que Node.js y npm estén instalados)
+                bat 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
+                bat 'apt-get install -y nodejs'
+                bat 'npm install'
             }
         }
         stage('Build') {
             steps {
-                script {
-                    // Compilar y construir la aplicación Angular
-                    sh 'npm run build'  // O "ng build" si tienes Angular CLI globalmente instalado
-                }
+                // Compilar y construir la aplicación Angular
+                bat 'npm run build'  // O "ng build" si tienes Angular CLI globalmente instalado
             }
         }
         // Agrega más etapas aquí según tus necesidades (por ejemplo, etapas de pruebas o despliegue).
