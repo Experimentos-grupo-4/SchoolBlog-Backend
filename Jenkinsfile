@@ -8,7 +8,7 @@ pipeline {
             }
         }
 
-        stage('Too Install') {
+        stage('Declarative: Too Install') {
             steps {
                 script {
                     // Coloca aquí los comandos para instalar dependencias
@@ -33,18 +33,6 @@ pipeline {
                     echo 'Ejecutando pruebas...'
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            // Acciones a realizar si el pipeline es exitoso
-            echo 'Pipeline ejecutado con éxito.'
-        }
-
-        failure {
-            // Acciones a realizar si el pipeline falla
-            echo 'El pipeline ha fallado.'
         }
     }
 }
