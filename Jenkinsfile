@@ -2,8 +2,17 @@ pipeline {
     agent any
 
     stages {
-
         stage('Declarative: Too Install') {
+            steps {
+                script {
+                    // Coloca aquí los comandos para instalar dependencias
+                    echo 'Instalando dependencias...'
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Compile Stage') {
             steps {
                 script {
                     // Coloca aquí los comandos para instalar dependencias
@@ -12,20 +21,12 @@ pipeline {
             }
         }
 
-        stage('Compile Stage') {
-            steps {
-                script {
-                    // Coloca aquí los comandos para compilar tu proyecto
-                    echo 'Compilando...'
-                }
-            }
-        }
-
         stage('Testing Stage') {
             steps {
                 script {
-                    // Coloca aquí los comandos para ejecutar pruebas
-                    echo 'Ejecutando pruebas...'
+                    // Coloca aquí los comandos para instalar dependencias
+                    echo 'Instalando dependencias...'
+                    archiveArtifacts 'pom.xml'
                 }
             }
         }
